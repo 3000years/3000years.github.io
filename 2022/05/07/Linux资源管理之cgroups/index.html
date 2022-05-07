@@ -24,7 +24,7 @@
 <meta property="og:description" content="一．cgroups 的概念及原理cgroups(Control Groups) 是 linux 内核提供的一种机制，这种机制可以根据需求把一系列系统任务及其子任务整合(或分隔)到按资源划分等级的不同组内，从而为系统资源管理提供一个统一的框架。 四大功能：资源限制 优先级分配 资源统计 任务控制 Tips：容器 &#x3D; cgroup + namespace + rootfs + 容器引擎•cg">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-07T02:53:00.000Z">
-<meta property="article:modified_time" content="2022-05-07T03:32:44.416Z">
+<meta property="article:modified_time" content="2022-05-07T06:31:21.034Z">
 <meta property="article:author" content="NPC">
 <meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
@@ -197,7 +197,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.1k 字
+      1.6k 字
     </span>
   
 
@@ -206,7 +206,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18 分钟
+      14 分钟
     </span>
   
 
@@ -262,11 +262,21 @@
 <p>8.freezer 子系统，可以挂起或者恢复 cgroups 中的进程。</p>
 <p>9.ns 子系统，可以使不同 cgroups 下面的进程使用不同的 namespace</p>
 <h4 id="cgroup层级结构"><a href="#cgroup层级结构" class="headerlink" title="cgroup层级结构"></a>cgroup层级结构</h4><p>每一个层级结构中是一颗树形结构，树的每一个节点是一个 cgroup 子系统。</p>
-<p>![image-20220507112845433](&#x2F;Users&#x2F;npc&#x2F;Desktop&#x2F;IDEAWorkSpace&#x2F;ops&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;Linux资源管理之cgroups&#x2F;:Users:npc:Library:Application Support:typora-user-images:image-20220507112845433.png)</p>
+
+
+
+
 <h4 id="cgroups与进程"><a href="#cgroups与进程" class="headerlink" title="cgroups与进程"></a>cgroups与进程</h4><p>css_set(cgroups subsystem set):辅助数据结构。</p>
 <p>一个进程只能隶属于一个css_set,隶属于同一个css_set的进程受到同一个css_set所关联的资源限制。</p>
 <p>总结：进程和cgroup结构体是多对多的关系。</p>
-<p>![image-20220507113149366](&#x2F;Users&#x2F;npc&#x2F;Desktop&#x2F;IDEAWorkSpace&#x2F;ops&#x2F;blog&#x2F;source&#x2F;_posts&#x2F;Linux资源管理之cgroups&#x2F;:Users:npc:Library:Application Support:typora-user-images:image-20220507113149366.png)</p>
+
+
+
+
+
+
+
+
 <h3 id="二．cgroups-文件系统概念及原理"><a href="#二．cgroups-文件系统概念及原理" class="headerlink" title="二．cgroups 文件系统概念及原理"></a>二．cgroups 文件系统概念及原理</h3><p>Linux通过文件的方式，将cgroups的功能和配置暴露给用户，这得益于Linux的虚拟文件系统（VFS）。VFS将具体文件系统的细节隐藏起来，给用户态提供一个统一的文件系统API接口，cgroups和VFS之间的链接部分，称之为cgroups文件系统。</p>
 <p>用户在用户态对 cgroups 文件系统的操作，通过 VFS 转化为对 cgroups 层级结构的维护。通过这样的方式，内核把 cgroups 的功能暴露给了用户态的进程。</p>
 <h3 id="三．cgroups-使用方法介绍"><a href="#三．cgroups-使用方法介绍" class="headerlink" title="三．cgroups 使用方法介绍"></a>三．cgroups 使用方法介绍</h3><p>cgroup简单使用</p>
